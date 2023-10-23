@@ -1,0 +1,83 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEditor"
+        mc:Ignorable="d"
+        MinHeight="175" MinWidth="375"
+        Title="Text Editor" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48px" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="1" FontSize="32" Name="textArea" PreviewMouseWheel="textArea_PreviewMouseWheel" DockPanel.Dock="Top" TextChanged="textArea_TextChanged" Background="#0B3D91" Foreground="#39FF14" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"  >
+            <TextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#39FF14"/>
+                    <GradientStop Color="#000000" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.BorderBrush>
+        </TextBox>
+        <DockPanel Grid.Row="0" Name="dockPanel">
+            <StackPanel DockPanel.Dock="Top">
+                <Menu FontSize="15">
+                    <Menu.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#0B3D91"/>
+                            <GradientStop Color="#9B59B6" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Menu.Background>
+                    <MenuItem Header="File" Foreground="#FF6EC7">
+                        <MenuItem Header="New" Click="MenuItem_New_Click"/>
+                        <MenuItem Header="Open" Click="MenuItem_Open_Click"/>
+                        <MenuItem Header="Save" Click="MenuItem_Save_Click" />
+                        <MenuItem Header="Save as" Click="MenuItem_SaveAs_Click"/>
+                        <Separator/>
+                        <MenuItem Header="Exit" Click="MenuItem_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Edit" Foreground="#FF6EC7">
+                        <MenuItem Command="Undo" Header="Undo" />
+                        <Separator/>
+                        <MenuItem Command="Cut" Header="Cut" />
+                        <MenuItem Command="Copy" Header="Copy" />
+                        <MenuItem Command="Paste" Header="Paste" />
+                        <MenuItem Command="Delete" Header="Delete" />
+                        <Separator/>
+                        <MenuItem Command="SelectAll" Header="Select all"/>
+                        <MenuItem Header="Time/Date" Click="MenuItem_DateTime_Click" />
+                    </MenuItem>
+                    <MenuItem Header="Themes" Foreground="#FF6EC7">
+                        <MenuItem Header="Cyberpunk" Click="MenuItem_Cyberpunk_Click"/>
+                        <MenuItem Header="Normal" Click="MenuItem_Normal_Click"/>
+                        <MenuItem Header="Retro" Click="MenuItem_Retro_Click"/>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <Menu.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#0B3D91"/>
+                            <GradientStop Color="#9B59B6" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Menu.Background>
+                    <WrapPanel>
+                        <Label Content="Size" FontSize="15" Foreground="#FF6EC7" Height="32"/>
+                        <TextBox x:Name="fontSizeText" Text="20" Padding="-2" Width="100" Height="15" TextChanged="fontSizeText_TextChanged" FontSize="13" />
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label x:Name="labelS" Content="Style" FontSize="15" Foreground="#FF6EC7" Height="33"/>
+                        <ComboBox SelectionChanged="ComboBox_SelectionChanged" FontSize="13" Height="24">
+                            <ComboBoxItem Content="Normal" IsSelected="True"/>
+                            <ComboBoxItem Content="Oblique" />
+                            <ComboBoxItem Content="Italic" />
+                        </ComboBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <CheckBox x:Name="autoSave" Content="Auto Save" Foreground="#FF6EC7" FontSize="12" Height="17" />
+                    </WrapPanel>
+                </Menu>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
